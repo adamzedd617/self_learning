@@ -1,4 +1,4 @@
-# self_learning_c-
+# self_learning
 Tickets_System
   - class and object
     - Polymorphism
@@ -10,4 +10,4 @@ Tickets_System
   - loop
   - selection
 
-Making for fun project with c++ language
+**Making for fun project with c++ language
