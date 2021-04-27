@@ -1,6 +1,5 @@
 #include <iostream>
 #include<string>
-#include <iomanip> //setprecision - decimal point
 
 //library file
 // #include "declare.h"
@@ -28,9 +27,9 @@ class tickets{
     void displayOrder(){
     calculateTotal();
     cout << endl << endl;
-      cout << firstname << ", " << lastname << ": " << numOfTickets << "  [ Prog 2: The Musical ]" << endl;
-      cout << "Seats         : " << seatType << endl;
-      cout << "Total Price is  " << fixed << setprecision(2) << price << endl;
+    cout << firstname << ", " << lastname << ": " << numOfTickets << endl;
+    cout << "Seats: " << seatType << endl;
+    cout << "Total Price is " << price << endl;
     }
 
 };
@@ -72,7 +71,7 @@ int main() {
  cin >> nums;
 
 //  premium caller
- cout << endl << "premium tickets";
+ cout << "premium tickets";
  premium ptest(fname,lname, nums);
  ptest.displayOrder();
 cout<< endl<< endl;
