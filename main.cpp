@@ -25,11 +25,11 @@ class tickets{
     }
 
     void displayOrder(){
-    calculateTotal();
-    cout << endl << endl;
-    cout << firstname << ", " << lastname << ": " << numOfTickets << endl;
-    cout << "Seats: " << seatType << endl;
-    cout << "Total Price is " << price << endl;
+      calculateTotal();
+      cout << endl << endl;
+      cout << firstname << ", " << lastname << ": " << numOfTickets << endl;
+      cout << "Seats: " << seatType << endl;
+      cout << "Total Price is " << price << endl;
     }
 
 };
@@ -45,6 +45,7 @@ class premium : public tickets {
     premium(string FN, string LN, int NOT):tickets(FN,LN,NOT) {
       seatType = "PREMIUM";
     }
+
 };
 
 //inherit class STANDARD : TICKETS
@@ -58,6 +59,7 @@ class standard : public tickets {
     standard(string FN, string LN, int NOT):tickets(FN,LN,NOT) {
       seatType = "STANDARD";
     }
+    
 };
 
 
