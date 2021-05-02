@@ -2,82 +2,141 @@
 #include<string>
 #include <iomanip> //setprecision - decimal point
 
-//library file
-// #include "declare.h"
+#define SIZE 100
+
 
 using namespace std;
 
-class tickets{
+class worker{
   protected:
-    string firstname, lastname, seatType;
+    string name, type;
     int numOfTickets;
-    float price,total;
+    float sales,total,salary;
+    float bonus = 0;
 
-    virtual void calculateTotal(void){
-      total = price*numOfTickets;
+    virtual int calculateTotal(float S){
+      return sales = S;
     }
  
  
   public:
-    tickets(string FN, string LN, int NOT){
-      numOfTickets = NOT;
-      firstname = FN;
-      lastname = LN;
+    worker(const string N){
+        name = N; 
     }
+    
+    void getInput(string N,float S,float B){
+        name = N; 
+        sales = S;
+        bonus = B;
 
+    }
+    
     void displayOrder(){
-    calculateTotal();
-    cout << endl << endl;
-      cout << firstname << ", " << lastname << ": " << numOfTickets << "  [ Prog 2: The Musical ]" << endl;
-      cout << "Seats         : " << seatType << endl;
-      cout << "Total Price is  " << fixed << setprecision(2) << price << endl;
+      getInput(name,sales,bonus);  
+      calculateTotal(sales);
+      cout << "Name           : "<< name << endl;
+      cout << "Status         : " << type << endl;
+      cout << "Sales          : " << fixed << setprecision(2) << sales << endl;
+      cout << "Bonus          : " << fixed << setprecision(2) << bonus << endl;
+      cout << "Total salary is  " << fixed << setprecision(2) << salary << endl;
     }
 
+    
 };
 
-//inherit class PREMIUM : TICKETS
-class premium : public tickets {  
+
+class fulltime : public worker {  
   private:
-    void calculateTotal(void){
-      price = numOfTickets * 150.0 * 115/100;
+    int calculateTotal(float sales){
+      if(sales >= 500){
+        bonus = sales * 0.3;
+        return salary = 1000 + sales + bonus;
+      }else{
+        bonus = 0;
+        return salary = 1000 + sales + bonus;
+      }
+      
     }
   public:
-  //inherit constructor child : parent
-    premium(string FN, string LN, int NOT):tickets(FN,LN,NOT) {
-      seatType = "PREMIUM";
+    fulltime(string N):worker(N) {
+      type = "FULL TIME";
     }
+    
 };
 
-//inherit class STANDARD : TICKETS
-class standard : public tickets {  
+
+class parttime : public worker {  
   private:
-    void calculateTotal(void){
-      price = numOfTickets * 100.0 * 110/100;
+    int calculateTotal(float sales){
+      getInput(name,sales,bonus);
+      if(sales >= 500){
+        bonus = (sales * 0.3);
+        return salary = 500 + sales + bonus;
+      }else{
+        bonus = 0;
+        return salary = 500 + sales + bonus;
+      }
+      
     }
   public:
-  //inherit constructor child : parent
-    standard(string FN, string LN, int NOT):tickets(FN,LN,NOT) {
-      seatType = "STANDARD";
+    parttime(string N):worker(N) {
+      type = "PART TIME";
+
     }
+    
 };
 
 
 int main() {
- string fname, lname;
- int nums;
+  string name;
+  float sales,bonus, nums = 1, type[SIZE];
+  worker **person;
+  worker *w[SIZE];
+  person = new worker*[SIZE];
+  
+  cout<< "***Welcome to Salesman Salary Calculator" << endl;
+  
+  for(int i = 0; i < nums ; i++ ){
+    cout<< endl<< "------------------------------------------------------------------" <<endl;
+    cout << "Order " << i+1 <<endl;
+    
+    cout << " FULL TIME                                   --> Press 1" <<endl;
+    cout << " PART TIME                                   --> Press 2" <<endl;
+    cout << "Enter Your Status           : ";cin >> type[i];
+    
+    cout << "Name    : ";
+    cin >> name;
+    cout << "Sales   : ";
+    cin >> sales;
+    
+    //selection codition
+    for(int u=i;u<nums; u++){
+      if(type[i] == 1){
+        person[u] = new fulltime(name);
+        person[u]->getInput(name,sales,bonus);
+      }
+      else if(type[i] == 2){
+        person[u] = new parttime(name);
+        person[u]->getInput(name,sales,bonus);
+      } 
+       
+    } 
+    //tickets array data store
+    w[i] = { person[i] };
+   
+  }
 
- cout << "Key in 1stname, lastname: ";
- getline(cin, fname); getline(cin,lname);
- cout << "Number of tickets: ";
- cin >> nums;
 
-//  premium caller
- cout << endl << "premium tickets";
- premium ptest(fname,lname, nums);
- ptest.displayOrder();
-cout<< endl<< endl;
-//  standard caller
- cout << "standard tickets";
- standard stest(fname,lname, nums);
- stest.displayOrder();
+
+  //display
+  cout<<endl<<endl;
+  cout << "Display : " <<endl;
+  for(int x = 0; x<nums;x++){
+    cout << "Output " << x+1 <<endl;
+    //from selection to calculate
+    person[x]->displayOrder();
+    //present as data store
+    w[x] = { person[x] };
+  }
+    
 }
