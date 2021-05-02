@@ -10,4 +10,8 @@ Tickets_System
   - loop
   - selection
 
+Project DONE:
+-Tickets_System
+-Sales-profit_system
+
 **Making for fun project with c++ language

@@ -1,5 +1,6 @@
 #include <iostream>
 #include<string>
+#include <iomanip> //setprecision - decimal point
 
 //library file
 // #include "declare.h"
@@ -25,11 +26,11 @@ class tickets{
     }
 
     void displayOrder(){
-      calculateTotal();
-      cout << endl << endl;
-      cout << firstname << ", " << lastname << ": " << numOfTickets << endl;
-      cout << "Seats: " << seatType << endl;
-      cout << "Total Price is " << price << endl;
+    calculateTotal();
+    cout << endl << endl;
+      cout << firstname << ", " << lastname << ": " << numOfTickets << "  [ Prog 2: The Musical ]" << endl;
+      cout << "Seats         : " << seatType << endl;
+      cout << "Total Price is  " << fixed << setprecision(2) << price << endl;
     }
 
 };
@@ -45,7 +46,6 @@ class premium : public tickets {
     premium(string FN, string LN, int NOT):tickets(FN,LN,NOT) {
       seatType = "PREMIUM";
     }
-
 };
 
 //inherit class STANDARD : TICKETS
@@ -59,7 +59,6 @@ class standard : public tickets {
     standard(string FN, string LN, int NOT):tickets(FN,LN,NOT) {
       seatType = "STANDARD";
     }
-    
 };
 
 
@@ -73,7 +72,7 @@ int main() {
  cin >> nums;
 
 //  premium caller
- cout << "premium tickets";
+ cout << endl << "premium tickets";
  premium ptest(fname,lname, nums);
  ptest.displayOrder();
 cout<< endl<< endl;
